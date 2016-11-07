@@ -5,15 +5,10 @@ William (BJ) Blair III
 
 BASIC INFO:
 -------------------
-I've supplied binaries for x86 and x64 computers in the
-respective folders 'x86' and 'x86_64'
-
 requires the gtkmm library to run, which can be installed
 on Debian/Ubuntu-ish systems with:
 
 	sudo apt-get install libgtkmm-3.0-1
-
-To compile yourself, see the COMPILING MANUALLY section
 
 Add images to choose from by pressing the 'Add Directory' button.
 You can also set fbsetbg options by selecting from Fullscreen, Centered,
