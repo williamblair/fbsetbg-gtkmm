@@ -74,6 +74,17 @@ void SetBGApp::addir_button_clicked(void)
 	return;
 }
 
+/* opens the rc file with the system's default text editor */
+void SetBGApp::editdir_button_clicked(void)
+{	
+	/* Is there a better way to do this ??? */
+	std::string command = "xdg-open ";
+	command += Glib::get_home_dir();
+	command += "/" + RC_FILE_STR + " &";
+	system(command.c_str());
+	return;
+}
+
 void SetBGApp::iconview_item_activated(const Gtk::TreeModel::Path &path)
 {
 

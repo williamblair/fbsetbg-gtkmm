@@ -5,11 +5,13 @@
 SetBGApp::SetBGApp(int argc, char *argv[])
 : setbg_button("Set Background"), // create button with label
 	addir_button("Add Directory"),
+	editdir_button("Edit Directory List"),
 	quit_button("Quit"),
-	vbox(Gtk::ORIENTATION_VERTICAL, 0), // create a vbox
+	vbox(  Gtk::ORIENTATION_VERTICAL,   0), // create a vbox
+	hbox_t(Gtk::ORIENTATION_HORIZONTAL, 0), // hbox for top row
 	hbox_b(Gtk::ORIENTATION_HORIZONTAL, 0), // create hbox for bottom row
-	hbox_r(Gtk::ORIENTATION_HORIZONTAL, 0), //  hbox for options row
-	file_counter(0), // set file_counter to 0
+	hbox_r(Gtk::ORIENTATION_HORIZONTAL, 0), // hbox for options row
+	file_counter(0),                        // set file_counter to 0
 	rbf("Fullscreen"),
 	rbc("Centered"),
 	rbt("Tiled"),
@@ -101,6 +103,9 @@ SetBGApp::SetBGApp(int argc, char *argv[])
 	 *
 	 * */
 
+	editdir_button.signal_clicked().connect(sigc::mem_fun(*this,
+	                              &SetBGApp::editdir_button_clicked));
+
 	setbg_button.signal_clicked().connect(sigc::mem_fun(*this,
 	                           &SetBGApp::setbg_button_clicked));
 
@@ -132,6 +137,9 @@ SetBGApp::SetBGApp(int argc, char *argv[])
 //                  PACK WIDGETS                         //
 ///////////////////////////////////////////////////////////
 
+	/* add stuff to the top row */
+	hbox_t.pack_start(editdir_button, false, false, 0);
+
 	/* add stuff to the options row */
 	hbox_r.pack_start(rbf, false, false, 0);
 	hbox_r.pack_start(rbc, false, false, 0);
@@ -141,13 +149,15 @@ SetBGApp::SetBGApp(int argc, char *argv[])
 	/* add stuff to the bottom button row */
 	hbox_b.pack_end(setbg_button, false, false, 0);
 	hbox_b.pack_end(addir_button, false, false, 0);
+	hbox_b.pack_end(editdir_button, false, false, 0);
 	hbox_b.pack_start(quit_button, false, false, 0);
 
 	/* add the icon view to the scroll window */
 	sw.add(iv);
 
-	/* add stuff to the vbox */ 
-	vbox.pack_start(sw, true, true, 0);
+	/* add stuff to the vbox */
+	vbox.pack_start(hbox_t, false, false, 0);
+	vbox.pack_start(sw,      true,  true, 0);
 	vbox.pack_start(hbox_r, false, false, 0);
 	vbox.pack_start(hbox_b, false, false, 0);
 
@@ -165,6 +175,8 @@ SetBGApp::SetBGApp(int argc, char *argv[])
 	/* update the widgets */
 	setbg_button.show();
 	addir_button.show();
+	editdir_button.show();
+	//editdir_button.show();
 	quit_button.show();
 	rbf.show();
 	rbc.show();
@@ -172,6 +184,7 @@ SetBGApp::SetBGApp(int argc, char *argv[])
 	rba.show();
 	hbox_b.show();
 	hbox_r.show();
+	hbox_t.show();
 	sw.show();
 	iv.show();
 	vbox.show();

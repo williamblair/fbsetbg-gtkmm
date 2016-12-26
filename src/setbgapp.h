@@ -64,8 +64,9 @@ class SetBGApp : public Gtk::Window
 		const int ICON_HEIGHT = 100;
 
 		/* SIGNAL HANDLERS */
-		void setbg_button_clicked();   // set background button handler 
-		void addir_button_clicked();   // set add dir button handler
+		void setbg_button_clicked();     // set background button handler 
+		void addir_button_clicked();     // set add dir button handler
+		void editdir_button_clicked();   // set add dir button handler
 
 		void rbf_clicked(); // change option to -f
 		void rbc_clicked(); // change option to -c
@@ -76,13 +77,15 @@ class SetBGApp : public Gtk::Window
 		void iconview_item_activated(const Gtk::TreeModel::Path &path);
 
 		/* WIDGETS */
-		Gtk::Box    vbox;          // vertical container
-		Gtk::Box    hbox_b;        // holds the bottom row of buttons
-		Gtk::Box    hbox_r;        // holds radio buttons
-		Gtk::Button setbg_button;  // button to set background
-		Gtk::Button addir_button;  // button to add image directory
-		Gtk::Button quit_button;   // button to exit the application	
-		Gtk::ScrolledWindow sw;    // scroll window
+		Gtk::Box    vbox;           // vertical container
+		Gtk::Box    hbox_t;         // top vbox for editing search directories
+		Gtk::Box    hbox_b;         // holds the bottom row of buttons
+		Gtk::Box    hbox_r;         // holds radio buttons
+		Gtk::Button setbg_button;   // button to set background
+		Gtk::Button addir_button;   // button to add image directory
+		Gtk::Button editdir_button; // button to edit the image list file
+		Gtk::Button quit_button;    // button to exit the application	
+		Gtk::ScrolledWindow sw;     // scroll window
 
 		Gtk::RadioButton rbf, rbc, rbt, rba; // radio buttons for apsect settings
 		                                     // -f - fullscreen
