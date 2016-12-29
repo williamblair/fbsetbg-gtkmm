@@ -101,9 +101,11 @@ class SetBGApp : public Gtk::Window
 		Glib::RefPtr<Gtk::ListStore> fileListStore; // a list store of each image info
 
 		/* FILE DATA */
-		int file_counter;                   // keeps track of how many files we have
+		int  file_counter;                 // keeps track of how many files we have
+		bool rcfile_edited;                // prevents the rc file from being overwritten on close if edited
+		bool directory_added;              // tells the program to update the rc file if a folder was added
 		std::vector<std::string> dir_list; // keeps track of scanned directories to make
-		                                     // sure we don't add multiples of the same image
+		                                   // sure we don't add multiples of the same image
 		const std::string RC_FILE_STR = ".fbsetbg-gtkmm.rc";
 };
 

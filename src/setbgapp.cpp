@@ -12,6 +12,8 @@ SetBGApp::SetBGApp(int argc, char *argv[])
 	hbox_b(Gtk::ORIENTATION_HORIZONTAL, 0), // create hbox for bottom row
 	hbox_r(Gtk::ORIENTATION_HORIZONTAL, 0), // hbox for options row
 	file_counter(0),                        // set file_counter to 0
+	rcfile_edited(false),                   // set the rc edited flag to 0
+	directory_added(false),                 // set the rc added floder flag to 0
 	rbf("Fullscreen"),
 	rbc("Centered"),
 	rbt("Tiled"),
@@ -196,6 +198,12 @@ SetBGApp::SetBGApp(int argc, char *argv[])
 SetBGApp::~SetBGApp(){
 	std::cout << "Exiting!\n";
 
+	/* if the user clicked 'edit directory list', skip this section
+	 * so the rcfile isn't overwritten 
+	 * or if there wasn't a directory added to the current list,
+	 * don't bother re-writing */
+	if( !rcfile_edited && directory_added )
+	{
 	std::string homedir = Glib::get_home_dir();
 	std::ofstream f;
 	/* add ios::trunc to overwrite contents */
@@ -214,6 +222,16 @@ SetBGApp::~SetBGApp(){
 			f << dir_list[i] << std::endl;
 		}
 		f.close();
+	}
+	}
+	else {
+		if( rcfile_edited) {
+			std::cout << "RC File was edited prior to closing," << std::endl;
+			std::cout << "Not overwriting!\n";
+		}
+		else if( !directory_added ){
+			std::cout << "No new directories to add, not bothering to overwrite rc file\n";
+		}
 	}
 }
 

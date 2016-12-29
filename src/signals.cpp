@@ -62,6 +62,8 @@ void SetBGApp::addir_button_clicked(void)
 			std::cout << "Folder selected: " << d.get_filename() <<
 			                                    std::endl;
 			readDir(d.get_filename());
+			directory_added = true;
+			std::cout << "Directory added flag set to " << directory_added << std::endl; 
 			break;
 		case (Gtk::RESPONSE_CANCEL):
 			std::cout << "Canceled!\n";
@@ -82,6 +84,11 @@ void SetBGApp::editdir_button_clicked(void)
 	command += Glib::get_home_dir();
 	command += "/" + RC_FILE_STR + " &";
 	system(command.c_str());
+
+	/* update the edited flag */
+	rcfile_edited = true;
+	std::cout << "Set the rc edited flag to " << rcfile_edited << std::endl;
+
 	return;
 }
 
