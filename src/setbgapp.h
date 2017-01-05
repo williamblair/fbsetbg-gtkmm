@@ -106,7 +106,7 @@ class SetBGApp : public Gtk::Window
 		bool directory_added;              // tells the program to update the rc file if a folder was added
 		std::vector<std::string> dir_list; // keeps track of scanned directories to make
 		                                   // sure we don't add multiples of the same image
-		const std::string RC_FILE_STR = ".fbsetbg-gtkmm.rc";
+		const std::string RC_FILE_STR = ".fbsetbg-gtkmm-dirlist";
 };
 
 #endif
