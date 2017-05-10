@@ -5,15 +5,13 @@ William (BJ) Blair III
 
 BASIC INFO:
 -------------------
-requires the gtkmm library to run, which can be installed
-on Debian/Ubuntu-ish systems with:
-
-	sudo apt-get install libgtkmm-3.0-1
-
 Add images to choose from by pressing the 'Add Directory' button.
 You can also set fbsetbg options by selecting from Fullscreen, Centered,
 Tiled, and Aspect; which represent the -f, -c, -t, and -a options
-respectively.
+respectively. You can either double click on an image to set it
+or press the 'Set Background' button. An rc file is stored in
+~/.fbsetbg-gtkmm-dirlist, and you can add directories to get images
+from in there.
 
 FBSETBG ERRORS:
 ---------------------------
@@ -41,7 +39,7 @@ in ~/.fluxbox/menu:
 
 That's it!
 
-COMPILING MANUALLY:
+COMPILING:
 -------------------
 to compile fbsetbg-gtk yourself, you will need g++, make, and gtk3
 these can be installed on Debian/Ubuntu-ish systems with:
@@ -49,6 +47,7 @@ these can be installed on Debian/Ubuntu-ish systems with:
 	sudo apt-get install g++
 	sudo apt-get install make
 	sudo apt-get install libgtkmm-3.0-dev
+	sudo apt-get install libatspi2.0-dev
 	sudo ldconfig
 
 then compile with:
